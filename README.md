@@ -125,7 +125,14 @@ HTTP/1.1 Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.16
 返回结果： 
 登录成功
 
-     { "code": 200, "message":"登录成功"， "data":{"access_token": "94633564bf58064cca3be21940cc2eb5beea85df" } }
+     { "code": 200, "message":"登录成功"，"data":{"username":1,"password":"e10adc3949ba59abbe56e057f20f883e","access_token":"gsQqvIr78BOieNqWO75pmDMQfXUFsNz6"}}
+返回参数：
+
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| access-token |  访问授权  |  string  |   -   | 
+| username | 环信ID    |    string     |   -   | 
+| password | 用户密码  |    string     |   -   | 
 
 ######2.退出登录
  接口说明：
@@ -334,7 +341,7 @@ HTTP/1.1
      { "code": 200， "message":"解除环信好友成功，解除本地好友成功" } 
 
 ######3.查看好友
-接口说明：好友其中一方解除好友关系。
+接口说明：查看用户的好友列表。
 请求参数：
 
 | 参数名          | 含义        | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
