@@ -351,4 +351,22 @@ HTTP/1.1
 请求实例： GET <u>/friendinfo/showfriend ?access-token=iIvChOihED8fVBPWq41OvAGAvzPgSDoc HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
 返回结果：
 成功：
-    {"code":200,"message":"查询成功","data":[{"user_name":"小花","user_id":"1","avatar_native":"/images/18508236987/a44cd.jpg","avatar_thumb":"/images/18508236987/thumb_a44cd.jpg"}]}
+    {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦"}]}
+
+
+
+
+
+######4.查找用户
+接口说明：根据手机号查找指定用户。
+请求参数：
+
+| 参数名          | 含义        | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | --------- | ----------- | ----------- | ---- | ---- |
+| access-token | 用户授权Token | 用户授权Token   | integer(11) | 是    | 无    |
+
+请求实例：POST <u>/friendinfo/search_user  ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7  HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u>  
+
+返回结果：
+成功：
+   {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦"}]}
