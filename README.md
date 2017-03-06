@@ -27,6 +27,7 @@
 - 2000002          数据库无此书籍 
 - 2000003          添加到图书收藏失败
 - 2000004          该用户已收藏过此书 
+- 2000005          查询不到关注图书结果 
 
 #####3.阅聊状态码 
 - 3000000          用户不存在  
@@ -392,4 +393,40 @@ HTTP/1.1
 
      { "code": 200， "message":"添加到图书收藏成功" }    
 
-2.首页展示用户关注的图书
+######2.首页展示用户关注的图书
+接口说明：通过扫描图书条码，收藏图书
+请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+| access-token | 用户授权Token | 用户授权Token | integer(11) | 是    | 无    |
+| pagesize     | 页面显示的条数   | 每页显示内容的条数 | integer     | 是    | 无    |
+| cpage         | 当前页       | 当前页的页数    | integer     | 否    | 1    |
+
+
+
+
+请求实例：
+ GET <u>/collect/bookdisplay ?cpage=1&pagesize=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+    {"code":200,"message":"已查询到用户关注的图书","data":{"total_num":5,"num":2,"0":{"book_id":"1","book_name":"唐诗三百首精选","author":"崔钟雷","photo":"","synopsis":""},"1":{"book_id":"2","book_name":"唐诗三百首精选1","author":"崔钟雷1","photo":"","synopsis":""}}}   
+
+返回参数：
+
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| book_id  |  访问授权  |  integer      |   -   | 
+| book_name| 图书名称   |    string     |   30  | 
+| author   | 图书作者   |    string     |   20  | 
+| photo    | 图书照片   |    string     |  100  | 
+| synopsis | 图书简介   |    text       |   -   | 
+
+
+
+参数名 含义  参数类型    长度
+book_id 图书表ID   integer -
+book_name   图书名称    string  30
+author  图书作者    string  20
+photo   图书照片    string  100
+synopsis    图书简介    text    -
