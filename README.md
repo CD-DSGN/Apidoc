@@ -25,7 +25,9 @@
 #####2.扫码关注状态码 
 - 2000001          扫描条形码有误 
 - 2000002          数据库无此书籍 
-
+- 2000003          数据库无此书籍 
+- 2000004          数据库无此书籍 
+- 2000005         数据库无此书籍 
 #####3.阅聊状态码 
 - 3000000          用户不存在  
 - 3000001          添加app好友成功，添加环信好友失败
@@ -363,10 +365,31 @@ HTTP/1.1
 
 | 参数名          | 含义        | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
 | ------------ | --------- | ----------- | ----------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token   | integer(11) | 是    | 无    |
+| mobile_phone | 手机号码 | 用户注册的可用手机号码 | integer(11) | 是  | 无    |
 
-请求实例：POST <u>/friendinfo/search_user  ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7  HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u>  
+请求实例：POST <u>/friendinfo/searchuser  ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7  HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u>  
 
 返回结果：
 成功：
    {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦"}]}
+
+
+######八、扫码
+######1.扫码关注图书
+接口说明：通过扫描图书条码，收藏图书
+请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|isbn_code | 图书条码 |  图书上面的13位ISBN条码 | string(13) | 是    | 无    |
+
+
+
+请求实例：
+ POST <u>/collect/scan ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+
+     { "code": 200， "message":"添加到图书收藏成功" }    
+
+2.首页展示用户关注的图书
