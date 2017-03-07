@@ -411,7 +411,7 @@ HTTP/1.1
  GET <u>/collect/bookdisplay ?cpage=1&pagesize=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
 成功：
-    {"code":200,"message":"已查询到用户关注的图书","data":{"total_num":5,"num":2,"0":{"book_id":"1","book_name":"唐诗三百首精选","author":"崔钟雷","photo":"","synopsis":""},"1":{"book_id":"2","book_name":"唐诗三百首精选1","author":"崔钟雷1","photo":"","synopsis":""}}}   
+    {"code":200,"message":"已查找用户关注的图书信息","data":{"total_num":5,"num":2,"info":[{"book_id":"1","book_name":"唐诗三百首精选","author":"崔钟雷","photo":"","synopsis":""},{"book_id":"2","book_name":"唐诗三百首精选1","author":"崔钟雷1","photo":"","synopsis":""}]}}  
 
 返回参数：
 
