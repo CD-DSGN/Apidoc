@@ -25,9 +25,12 @@
 #####2.扫码关注状态码 
 - 2000001          扫描条形码有误 
 - 2000002          数据库无此书籍 
-- 2000003          添加到图书收藏失败
-- 2000004          该用户已收藏过此书 
+- 2000003          关注图书失败
+- 2000004          该用户已关注过此书 
 - 2000005          查询不到关注图书结果 
+- 2000006          添加图书收藏失败
+- 2000007          删除图书收藏失败
+- 2000008          该用户已收藏过此书
 
 #####3.阅聊状态码 
 - 3000000          用户不存在  
@@ -375,7 +378,7 @@ HTTP/1.1
    {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦"}]}
 
 
-######八、扫码
+######八、扫码关注
 ######1.扫码关注图书
 接口说明：通过扫描图书条码，收藏图书
 请求参数：
@@ -404,8 +407,6 @@ HTTP/1.1
 | cpage         | 当前页       | 当前页的页数    | integer     | 否    | 1    |
 
 
-
-
 请求实例：
  GET <u>/collect/bookdisplay ?cpage=1&pagesize=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
@@ -423,10 +424,63 @@ HTTP/1.1
 | synopsis | 图书简介   |    text       |   -   | 
 
 
+######九、图书搜索
+1.图书搜索
+接口说明：用户通过输入图书ISBN条码，查找相应的图书信息
+请求参数：
 
-参数名 含义  参数类型    长度
-book_id 图书表ID   integer -
-book_name   图书名称    string  30
-author  图书作者    string  20
-photo   图书照片    string  100
-synopsis    图书简介    text    -
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|isbn_code | 图书条码 |  图书上面的13位ISBN条码 | string(13) | 是    | 无    |
+
+
+请求实例：
+POST <u>/collect/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+    {"code":200,"message":"已查找到搜索的图书信息","data":{"book_id":"1","book_name":"唐诗三百首精选","photo":"","synopsis":"","author":"崔钟雷"}}
+
+返回参数：
+
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| book_id  |  访问授权  |  integer      |   -   | 
+| book_name| 图书名称   |    string     |   30  | 
+| author   | 图书作者   |    string     |   20  | 
+| photo    | 图书照片   |    string     |  100  | 
+| synopsis | 图书简介   |    text       |   -   | 
+
+######十、图书收藏
+######1.添加图书收藏
+接口说明：用户点击图书，进行收藏
+请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|book_id  |  图书ID  |  图书表中的ID |  integer  | 是    | 无    |
+
+
+
+请求实例：
+GET <u>/collect/addcollection?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+
+     { "code": 200， "message":"添加到图书收藏成功" }    
+
+######2.删除图书收藏
+接口说明：用户对已收藏的图书进行删除
+请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|book_id  |  图书ID  |  图书表中的ID |  integer  | 是    | 无    |
+
+
+
+请求实例：
+GET <u>/collect/deletecollection?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+
+     { "code": 200， "message":"删除图书收藏成功" }         
