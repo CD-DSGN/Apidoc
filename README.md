@@ -430,7 +430,7 @@ HTTP/1.1
 
 返回结果：
 成功：
-   {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦"}]}
+ {"code":200,"message":"查询成功","data":{"collection":[{"book_name":"唐诗三百首精选","is_both_enjoy":2},{"book_name":"唐诗三百首精选2","is_both_enjoy":2},{"book_name":"深入浅出MySQL","is_both_enjoy":2}],"personalinfo":{"user_id":1,"user_name":"小花","gender":1,"signature":"啦啦啦","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg"},"is_friend":2}}
 
 返回参数：
 
@@ -444,6 +444,7 @@ HTTP/1.1
 | signature| 个性签名   |    string     |   50  | 
 | avatar_native  | 用户原始上传头像url  | string  | - | 
 | avatar_thumb   | 用户头像缩略图url    | string  | - | 
+| is_friend      | 是否已经成为好友 ：1是 2 否   | integer  | 1 | 
 
 
 ######八、扫码关注
