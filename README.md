@@ -40,6 +40,13 @@
 - 3000004          解除环信中的好友成功，解除本地好友失败
 - 3000005          解除环信好友失败
 - 3000006          查询不到好友结果
+- 3000007          好友添加请求保存失败
+- 3000008           好友添加请求已经发送过
+- 3000009          该用户目前没有好友添加请求
+- 3000010          拒绝好友请求失败
+- 3000011          好友添加请求表中没有记录
+- 3000012          添加app好友成功，添加环信好友成功,删除好友请求失败
+- 3000013          被请求添加好友的用户不符
 
 #####4.定位搜索状态码 4000000 
 - 4000000           设置用户坐标失败
@@ -58,6 +65,13 @@
 ##### 6.用户反馈，投诉建议
 
 - 6000000           用户反馈信息提交失败
+
+
+##### 7.版本升级
+
+- 7000000           请更新客户端版本
+- 7000001           目前是最新版本，无需更新
+
 
 #####一、注册 
 ##### 1.发送手机验证码
@@ -375,24 +389,6 @@ HTTP/1.1
 成功：
      { "code": 200， "message":"添加app好友成功，添加环信好友成功,删除好友请求成功" } 
 
-######1.添加好友列表 
-接口说明：
-将接受人和添加好友发起人添加到好友列表  请求参数：
-
-| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
-| ------------ | ---- | ----------- | ----------- | ---- | ---- |
-|user_id2| 用户ID | 添加好友发起人在用户表中对应的用户ID | integer(11) | 是    | 无    |
-
-
-
-请求实例：
- POST <u>/friendinfo/addfriend ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
-返回结果：
-成功：
-
-     { "code": 200， "message":"添加app好友成功，添加环信好友成功" } 
-
-
 
 ######5.解除好友关系
 接口说明：其中一方好友解除好友关系
@@ -517,8 +513,6 @@ POST <u>/collect/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a
 | ------------ | ---- | ----------- | ----------- | ---- | ---- |
 |book_id  |  图书ID  |  图书表中的ID |  integer  | 是    | 无    |
 
-
-
 请求实例：
 GET <u>/collect/addcollection?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
@@ -534,11 +528,28 @@ GET <u>/collect/addcollection?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf
 | ------------ | ---- | ----------- | ----------- | ---- | ---- |
 |book_id  |  图书ID  |  图书表中的ID |  integer  | 是    | 无    |
 
-
-
 请求实例：
 GET <u>/collect/deletecollection?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
 成功：
 
-     { "code": 200， "message":"删除图书收藏成功" }         
+     { "code": 200， "message":"删除图书收藏成功" }
+
+######十一、版本升级
+######1.客户端版本升级
+接口说明：客户端版本自动检测升级
+请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|  version  |  版本号 |  客户端的版本号 |  string  | 是    | 无    |
+|  client_type |  客户端类型  |  1 IOS 2 android | integer | 是    | 无    |
+
+
+请求实例：
+POST <u>/version/updateversion?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+
+返回结果：
+成功：
+   {"code":7000000,"message":"请更新客户端版本","data":{"is_update":true,"is_required":false,"latest_version":"1.5.0","update_note":"修复几处漏洞","down_link":"http://www.123.com"}}
+   
