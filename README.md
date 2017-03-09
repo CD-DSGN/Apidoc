@@ -314,6 +314,67 @@ HTTP/1.1
 
     { "code": 200, "message": "用户反馈信息提交成功", }
 ######七、阅聊 
+######1.将发送过来的添加好友的请求，写入申请表
+接口说明：
+将接受人和添加好友发起人添加到好友列表  请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|user_id2| 用户ID | 添加好友发起人在用户表中对应的用户ID | integer(11) | 是    | 无    |
+| message| 附言   | 发送请求时的附加的留言 | string(255) | 否    | 无    |
+
+
+请求实例：
+ POST <u>/requestinfo/requestadd?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+     { "code": 200， "message":"好友添加请求保存成功" } 
+
+######2.好友请求列表
+接口说明：返回好友请求列表
+将接受人和添加好友发起人添加到好友列表  请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+| access-token | 用户授权Token | 用户授权Token | integer(11) | 是    | 无    |
+
+请求实例：
+ <u>GET /requestinfo/requestlist?access-token=1f62377af75920ce2a6377dd6e83929bf825feb0 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
+
+返回结果：
+成功：
+     { "code": 200， "message":"已查找到该用户的所有好友添加请求" } 
+
+######3.拒绝好友请求
+接口说明：不同意请求，剔除此次申请
+将接受人和添加好友发起人添加到好友列表  请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+| request_id   | 申请表ID | 好友添加申请表ID | integer(11) | 是    | 无    |
+
+请求实例：
+ POST <u>/requestinfo/requestrefuse?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+
+返回结果：
+成功：
+     { "code": 200， "message":"拒绝好友请求成功" } 
+
+######4.同意好友请求
+接口说明：返回好友请求列表
+将接受人和添加好友发起人添加到好友列表  请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+| request_id   | 申请表ID | 好友添加申请表ID | integer(11) | 是    | 无    |
+
+请求实例：
+ POST <u>/requestinfo/requestagree?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+
+返回结果：
+成功：
+     { "code": 200， "message":"添加app好友成功，添加环信好友成功,删除好友请求成功" } 
+
 ######1.添加好友列表 
 接口说明：
 将接受人和添加好友发起人添加到好友列表  请求参数：
@@ -333,7 +394,7 @@ HTTP/1.1
 
 
 
-######2.解除好友关系
+######5.解除好友关系
 接口说明：其中一方好友解除好友关系
 请求参数： 
 
@@ -346,7 +407,7 @@ HTTP/1.1
 成功：
      { "code": 200， "message":"解除环信好友成功，解除本地好友成功" } 
 
-######3.查看好友
+######6.查看好友
 接口说明：查看用户的好友列表。
 请求参数：
 
@@ -360,10 +421,7 @@ HTTP/1.1
     {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦"}]}
 
 
-
-
-
-######4.查找用户
+######7.查找用户
 接口说明：根据手机号查找指定用户。
 请求参数：
 
@@ -393,8 +451,8 @@ HTTP/1.1
  POST <u>/collect/scan ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
 成功：
-
-     { "code": 200， "message":"添加到图书收藏成功" }    
+    {"code":200,"message":"关注图书成功","data":{"book_id":"6","book_name":"深入浅出MySQL","author":"唐汉明","photo":"","synopsis":""}}
+    
 
 ######2.首页展示用户关注的图书
 接口说明：通过扫描图书条码，收藏图书
