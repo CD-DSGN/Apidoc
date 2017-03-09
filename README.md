@@ -495,7 +495,7 @@ HTTP/1.1
 
 ######九、图书搜索
 1.图书搜索
-接口说明：用户通过输入图书ISBN条码，查找相应的图书信息
+接口说明：用户通过关键词，查找相应的图书信息
 请求参数：
 
 | 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
@@ -507,7 +507,7 @@ HTTP/1.1
 POST <u>/collect/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
 成功：
-    {"code":200,"message":"已查找到搜索的图书信息","data":{"book_id":"1","book_name":"唐诗三百首精选","photo":"","synopsis":"","author":"崔钟雷"}}
+    {"code":200,"message":"已查找到搜索的图书信息","data":[{"book_id":"1","book_name":"唐诗三百首精选","photo":"","synopsis":"","author":"崔钟雷"},{"book_id":"2","book_name":"唐诗三百首精选1","photo":"","synopsis":"","author":"崔钟雷1"}]}
 
 返回参数：
 
