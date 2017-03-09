@@ -357,7 +357,7 @@ HTTP/1.1
 
 返回结果：
 成功：
-     { "code": 200， "message":"已查找到该用户的所有好友添加请求" } 
+     {"code":200,"message":"已查找到该用户的所有好友添加请求","data":[{"user_id":"10","user_name":"小呆","gender":"1","request_id":"4","avatar_native":"","avatar_thumb":"","signature":"啦啦啦","message":"你好"},{"user_id":"5","user_name":"小紫","gender":"1","request_id":"10","avatar_native":"/images/18228170108/b4916f57093d43c1948544d41e131cee.jpg","avatar_thumb":"/images/18228170108/b4916f57093d43c1948544d41e131cee.jpg","signature":"啦啦啦2","message":"我是小红"}]}
 
 ######3.拒绝好友请求
 接口说明：不同意请求，剔除此次申请
