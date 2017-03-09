@@ -431,6 +431,19 @@ HTTP/1.1
 成功：
    {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦"}]}
 
+返回参数：
+
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| book_name| 图书名称   |    string     |   30  | 
+| is_both_enjoy | 是否为共同爱好 ：1是 2 否  |  integer  | 1  | 
+| user_id  | 用户表ID   | integer   |  -   | 
+| user_name| 用户姓名   |    string     |   15  | 
+| gender   | 用户性别  1 女 2 男  |  integer  | 1  | 
+| signature| 个性签名   |    string     |   50  | 
+| avatar_native  | 用户原始上传头像url  | string  | - | 
+| avatar_thumb   | 用户头像缩略图url    | string  | - | 
+
 
 ######八、扫码关注
 ######1.扫码关注图书
