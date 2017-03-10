@@ -435,7 +435,7 @@ HTTP/1.1
 
 返回结果：
 成功：
- {"code":200,"message":"查询成功","data":{"collection":[{"book_name":"唐诗三百首精选","is_both_enjoy":2},{"book_name":"唐诗三百首精选2","is_both_enjoy":2},{"book_name":"深入浅出MySQL","is_both_enjoy":2}],"personalinfo":{"user_id":1,"user_name":"小花","gender":1,"signature":"啦啦啦","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg"},"is_friend":2}}
+{"code":200,"message":"查询成功","data":{"is_friend":2,"collection":[{"book_id":"6","book_name":"深入浅出MySQL","is_both_enjoy":2},{"book_id":"3","book_name":"唐诗三百首精选2","is_both_enjoy":2},{"book_id":"7","book_name":"The Hobbit","is_both_enjoy":1},{"book_id":"8","book_name":"代码大全","is_both_enjoy":1}],"personalinfo":{"user_id":1,"user_name":"小花","gender":1,"signature":"啦啦啦","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg"}}}
 
 返回参数：
 
@@ -523,6 +523,28 @@ POST <u>/keyword/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a
 | author   | 图书作者   |    string     |   20  | 
 | photo    | 图书照片   |    string     |  100  | 
 | synopsis | 图书简介   |    text       |   -   | 
+2.热门搜索
+接口说明：获取热门关键词
+请求参数：
+
+| 参数名          | 含义        | 规则说明      | 参数类型       | 是否必须 |
+| ------------ | --------- | --------- | ---------- | :--- |
+| access-token | 用户授权Token | 用户授权Token | integer(11 | 是    |
+
+请求实例：
+GET <u>/keyword/gethotword?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+    {"code":200,"message":"查询热门关键词成功","data":[{"key_id":"10","key_word":"唐诗","search_num":"13","search_last_time":"1489130912"},{"key_id":"12","key_word":"mysql","search_num":"10","search_last_time":"1489131097"},{"key_id":"5","key_word":"源代码","search_num":"7","search_last_time":"1489124437"},{"key_id":"2","key_word":"从你的全世界路过","search_num":"6","search_last_time":"1489122720"},{"key_id":"6","key_word":"三国演义","search_num":"5","search_last_time":"1489124516"}]}
+
+返回参数：
+
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| key_word |  关键词  |  string    |   -   | 
+
+============================================================================================待修改
+
 
 ######十、图书收藏
 ######1.添加图书收藏
@@ -555,7 +577,35 @@ GET <u>/collect/deletecollection?book_id=2&access-token=c73925bfa0f08a641be5db9f
 
      { "code": 200， "message":"删除图书收藏成功" }
 
-######十一、版本升级
+
+######十一、获取图书详情
+######1.获取图书详情
+接口说明：根据图书表中的book_id，获取图书详情
+请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|book_id  |  图书ID  |  图书表中的ID |  integer  | 是    | 无    |
+
+请求实例：
+GET <u>/collect/getbookdetail?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+   {"code":200,"message":"已成功查询到该书详情","data":{"book_id":"1","book_name":"唐诗三百首精选","author":"崔钟雷","photo":"","synopsis":"","code":"9787811292077","publisher":"人民出版社","pub_date":"2009-9-1","price":"8.00","cate_id":"2"}}
+
+返回参数：
+
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| book_id  |  访问授权  |  integer      |   -   | 
+| book_name| 图书名称   |    string     |   30  | 
+| author   | 图书作者   |    string     |   20  | 
+| photo    | 图书照片   |    string     |  100  | 
+| synopsis | 图书简介   |    text       |   -   |   
+| publisher | 出版社    |    string     |  100  | 
+| pub_date  | 出版日期  |    string     |   -   |  
+
+######十二、版本升级
 ######1.客户端版本升级
 接口说明：客户端版本自动检测升级
 请求参数：
