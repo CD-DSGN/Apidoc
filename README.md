@@ -31,6 +31,11 @@
 - 2000006          添加图书收藏失败
 - 2000007          删除图书收藏失败
 - 2000008          该用户已收藏过此书
+- 2000009          服务器添加关键词失败
+- 2000010          服务器刷新关键词失败
+- 2000011          未查找到要搜索的相关图书信息
+- 2000012          本地添加关键词失败
+- 2000013          本地刷新关键词失败
 
 #####3.阅聊状态码 
 - 3000000          用户不存在  
@@ -504,7 +509,7 @@ HTTP/1.1
 
 
 请求实例：
-POST <u>/collect/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+POST <u>/keyword/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
 成功：
     {"code":200,"message":"已查找到搜索的图书信息","data":[{"book_id":"1","book_name":"唐诗三百首精选","photo":"","synopsis":"","author":"崔钟雷"},{"book_id":"2","book_name":"唐诗三百首精选1","photo":"","synopsis":"","author":"崔钟雷1"}]}
