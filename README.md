@@ -31,11 +31,13 @@
 - 2000006          添加图书收藏失败
 - 2000007          删除图书收藏失败
 - 2000008          该用户已收藏过此书
-- 2000009          服务器添加关键词失败
-- 2000010          服务器刷新关键词失败
-- 2000011          未查找到要搜索的相关图书信息
-- 2000012          本地添加关键词失败
-- 2000013          本地刷新关键词失败
+- 2000009          查询搜索的图书信息成功，添加搜索关键词到服务器失败
+- 20000010         未查找到要搜索的相关图书信息
+- 20000011         未查询到热门关键词的结果
+- 20000012         数据库没有该书记录
+- 20000013         关注图书成功,添加扫描记录失败
+- 20000014         该用户已关注过此书,添加扫描记录失败
+
 
 #####3.阅聊状态码 
 - 3000000          用户不存在  
@@ -506,23 +508,25 @@ HTTP/1.1
 | 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
 | ------------ | ---- | ----------- | ----------- | ---- | ---- |
 |  keyword  | 关键词 |  图书搜索的关键词  | string(13) | 是    | 无    |
+|  pagesize     | 页面显示的条数   | 每页显示内容的条数 | integer     | 否    | 3    |
+|  cpage        | 当前页       | 当前页的页数    |     integer       | 否    | 1    |
 
 
 请求实例：
 POST <u>/keyword/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
 成功：
-    {"code":200,"message":"已查找到搜索的图书信息","data":[{"book_id":"1","book_name":"唐诗三百首精选","photo":"","synopsis":"","author":"崔钟雷"},{"book_id":"2","book_name":"唐诗三百首精选1","photo":"","synopsis":"","author":"崔钟雷1"}]}
-
+    {"code":200,"message":"查询搜索的图书信息成功，添加搜索关键词到服务器成功","data":{"total_num":5,"num":3,"search_result":[{"book_id":"1","book_name":"唐诗三百首精选","photo":"","synopsis":"","author":"崔钟雷"},{"book_id":"2","book_name":"唐诗三百首精选1","photo":"","synopsis":"","author":"崔钟雷1"},{"book_id":"3","book_name":"唐诗三百首精选2","photo":"","synopsis":"","author":"崔钟雷2"}],"scan_record":[{"book_id":"2","book_name":"唐诗三百首精选1","scan_time":"2017/03/12"},{"book_id":"3","book_name":"唐诗三百首精选2","scan_time":"2017/03/12"}]}}
 返回参数：
 
 | 参数名          | 含义     | 参数类型        | 长度 |
 | ------------- | ------- | ------------ | ------- | 
-| book_id  |  访问授权  |  integer      |   -   | 
-| book_name| 图书名称   |    string     |   30  | 
-| author   | 图书作者   |    string     |   20  | 
-| photo    | 图书照片   |    string     |  100  | 
-| synopsis | 图书简介   |    text       |   -   | 
+| book_id   |  访问授权   |  integer      |   -   | 
+| book_name | 图书名称    |    string     |   30  | 
+| author    | 图书作者    |    string     |   20  | 
+| photo     | 图书照片    |    string     |  100  | 
+| synopsis  | 图书简介    |    text       |   -   | 
+| scan_time | 扫描图书时间 |   integer    |   -   | 
 2.热门搜索
 接口说明：获取热门关键词
 请求参数：
@@ -535,13 +539,13 @@ POST <u>/keyword/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a
 GET <u>/keyword/gethotword?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
 返回结果：
 成功：
-    {"code":200,"message":"查询热门关键词成功","data":[{"key_id":"10","key_word":"唐诗","search_num":"13","search_last_time":"1489130912"},{"key_id":"12","key_word":"mysql","search_num":"10","search_last_time":"1489131097"},{"key_id":"5","key_word":"源代码","search_num":"7","search_last_time":"1489124437"},{"key_id":"2","key_word":"从你的全世界路过","search_num":"6","search_last_time":"1489122720"},{"key_id":"6","key_word":"三国演义","search_num":"5","search_last_time":"1489124516"}]}
+    {"code":200,"message":"查询热门关键词成功","data":{"hotword":["从你的全世界路过","唐诗","唐诗三百首","从你的全世界路过2","设计圈"]}}
 
 返回参数：
 
 | 参数名          | 含义     | 参数类型        | 长度 |
 | ------------- | ------- | ------------ | ------- | 
-| key_word |  关键词  |  string    |   -   | 
+| hotword | 热门搜索词  |  string    |   -   | 
 
 ============================================================================================待修改
 
@@ -621,5 +625,5 @@ POST <u>/version/updateversion?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691
 
 返回结果：
 成功：
-   {"code":7000000,"message":"请更新客户端版本","data":{"is_update":true,"is_required":false,"latest_version":"1.5.0","update_note":"修复几处漏洞","down_link":"http://www.123.com"}}
+   {"code":200,"message":"请更新客户端版本","data":{"is_update":true,"is_required":false,"latest_version":"1.5.0","update_note":"修复几处漏洞","down_link":"http://www.123.com"}}
    
