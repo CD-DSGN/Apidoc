@@ -256,7 +256,7 @@ HTTP/1.1
 | access-token | 用户授权Token | 用户授权Token     | integer(11) 是   | 无    |      |
 | user_name    | 修改后的用户名   | 修改后的用户名       | string(15)      | 否    | 无    |
 | signature    | 个性签名      | 用户的个性留言       | string(50)      | 否    | 无    |
-| gender       | 性别        | 1:女 2:男 3:未设置 | smallinteger(1) |      |      |
+| gender       | 性别        | 1:女 2:男 3:未设置 | smallinteger(1) |    是  |    3  |
 请求实例： POST <u>userinfo/setpersonal ?access-token=iIvChOihED8fVBPWq41OvAGAvzPgSDoc HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
 返回结果：
  成功：
