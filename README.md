@@ -55,6 +55,7 @@
 - 3000012          添加app好友成功，添加环信好友成功,删除好友请求失败
 - 3000013          被请求添加好友的用户不符
 - 3000014          请求添加的好友不能是自己
+- 3000015          设置好友备注失败
 
 #####4.定位搜索状态码 4000000 
 - 4000000           设置用户坐标失败
@@ -422,7 +423,19 @@ HTTP/1.1
 请求实例： GET <u>/friendinfo/showfriend ?access-token=iIvChOihED8fVBPWq41OvAGAvzPgSDoc HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
 返回结果：
 成功：
-    {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦"}]}
+    {"code":200,"message":"查询成功","data":[{"user_name":"小花","gender":"1","user_id":"1","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg","signature":"啦啦啦","remark":"花儿"},{"user_name":"小明","gender":"2","user_id":"2","avatar_native":"/images/17711351006/0089c68ee0a14853bcb97c411fba4c3c.jpg","avatar_thumb":"/images/17711351006/thumb_0089c68ee0a14853bcb97c411fba4c3c.jpg","signature":"呵呵呵","remark":"笨蛋小明"}]}
+
+返回参数：
+
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| user_id  | 用户表ID   | integer   |  -   | 
+| user_name| 用户姓名   |    string     |   15  | 
+| gender   | 用户性别  1 女 2 男  |  integer  | 1  | 
+| signature| 个性签名   |    string     |   50  | 
+| avatar_native  | 用户原始上传头像url  | string  | - | 
+| avatar_thumb   | 用户头像缩略图url    | string  | - | 
+| remark     | 好友备注   |   string    |   20   |     
 
 
 ######7.查找用户
@@ -453,6 +466,21 @@ HTTP/1.1
 | avatar_thumb   | 用户头像缩略图url    | string  | - | 
 | is_friend      | 是否已经成为好友 ：1是 2 否   | integer  | 1 | 
 
+######8.设置好友备注
+接口说明：用户对好友设置的备注名称
+请求参数：
+
+| 参数名          | 含义        | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | --------- | ----------- | ----------- | ---- | ---- |
+|user_id2| 用户ID    | 添加好友发起人在用户表中对应的用户ID | integer(11) | 是    | 无    |
+| remark | 好友备注  | 用户对好友设置的备注 | string(20) | 否    | 无    |
+
+
+请求实例：POST <u>/friendinfo/remarkfriend  ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7  HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u>  
+
+返回结果：
+成功：
+   {"code":200,"message":"设置好友备注成功","data":""}
 
 ######八、扫码关注
 ######1.扫码关注图书
