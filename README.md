@@ -1,25 +1,26 @@
 #**大术读家api**
 
- ###API接口文档 错误码说明 
-####1.注册登录状态码 1000000 
-- 1000000          手机号已注册
-- 1000001          手机号码不符合规则
-- 1000002          短信发送失败
-- 1000003          注册字段不符合规则
-- 1000004          验证码超时
-- 1000005          验证码错误
-- 1000006          密码必须是由6-20位的数字或者字母组成 
-- 1000007          注册失败 
-- 1000008          登录失败，用户名或者密码错误
-- 1000009          填写字段不符合规则
-- 1000010          token已过期
-- 1000011          退出登录失败
-- 1000012          手机号未注册
-- 1000013          重置密码失败
-- 1000014          注册app成功,注册环信失败
-- 1000015          重置app密码成功,重置环信账号密码失败 
-- 1000016          删除环信用户成功，删除app用户失败
-- 1000017          删除环信用户失败
+###API接口文档 错误码说明 
+####1.注册登录状态码 
+- 1000000                手机号已注册
+- 1000001                手机号码不符合规则
+- 1000002                 短信发送失败
+- 1000003                 注册字段不符合规则
+- 1000004                 验证码超时
+- 1000005                验证码错误
+- 1000006                  密码必须是由6-20位的数字或者字母组成 
+- 1000007                  注册失败 
+- 1000008                 登录失败，用户名或者密码错误
+- 1000009                 填写字段不符合规则
+- 1000010                 token已过期
+- 1000011                 退出登录失败
+- 1000012                 手机号未注册
+- 1000013                 重置密码失败
+- 1000014                     注册app成功,注册环信失败
+- 1000015                     重置app密码成功,重置环信账号密码失败 
+- 1000016                     删除环信用户成功，删除app用户失败
+- 1000017                     删除环信用户失败
+- 1000018                     token不存在
 
 
 #####2.扫码关注状态码 
@@ -57,9 +58,9 @@
 - 3000014          请求添加的好友不能是自己
 - 3000015          设置好友备注失败
 
-#####4.定位搜索状态码 4000000 
-- 4000000           设置用户坐标失败
-- 4000001           获取附近用户坐标失败，查询不到相关的结果
+#####4.定位搜索状态码 
+- 4000000      设置用户坐标失败
+- 4000001      获取附近用户坐标失败，查询不到相关的结果
 
 #####5.个人设置状态码
 -   0  status:401        未授权
@@ -165,16 +166,31 @@ HTTP/1.1 Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.16
 
 | 参数名          | 含义        | 规则说明      | 参数类型       | 是否必须 |
 | ------------ | --------- | --------- | ---------- | :--- |
-| access-token | 用户授权Token | 用户授权Token | integer(11 | 是    |
+| access-token | 用户授权token | 用户授权token | string | 是    |
 
 
  请求实例：
  <u>GET /logout/exit ?access-token=1f62377af75920ce2a6377dd6e83929bf825feb0 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
 返回结果：
- 退出成功
+退出成功
 ​    
+    { "code": 200, "message":"退出登录成功"} 
 
-    { "code": 200, "message":"退出登录成功"，} 
+######3.检查token
+接口说明：用户在特殊状态下，通过检查token，验证身份
+请求参数： 
+
+| 参数名          | 含义        | 规则说明      | 参数类型       | 是否必须 |
+| ------------ | --------- | --------- | ---------- | :--- |
+| token | 用户授权token | 用户授权token | string | 是    |
+|user_id| 用户ID        |  用户表中的ID | integer| 是    |
+
+
+请求实例：
+ POST /checktoken/check HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+    
+    {"code":200,"message":"token正常","data":""}
 
 ######三、密码修改 
 ######1.发送验证码 
@@ -218,7 +234,7 @@ HTTP/1.1
 
 | 参数名          | 含义        | 规则说明      | 参数类型        | 是否必须 | 缺省值  |
 | ------------ | --------- | --------- | ----------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token | integer(11) | 是    | 无    |
+| access-token | 用户授权token | 用户授权token | string | 是    | 无    |
 请求实例：
  GET /userinfo/getuserinfo ?access-token=iIvChOihED8fVBPWq41OvAGAvzPgSDoc HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web) 
 返回结果：
@@ -231,7 +247,7 @@ HTTP/1.1
 
 | 参数名          | 含义        | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
 | ------------ | --------- | ----------- | ----------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token   | integer(11) | 是    | 无    |
+| access-token | 用户授权token | 用户授权token   | string | 是    | 无    |
 | imgpath      | 用户头像      | 用户上传头像对应的字段 | string      | 是    | 无    |
 
 请求实例：
@@ -245,7 +261,7 @@ HTTP/1.1
 
 | 参数名          | 含义        | 规则说明          | 参数类型            | 是否必须 | 缺省值  |
 | ------------ | --------- | ------------- | --------------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token     | integer(11) 是   | 无    |      |
+| access-token | 用户授权token | 用户授权token     | string  | 是   | 无    |      |
 | user_name    | 修改后的用户名   | 修改后的用户名       | string(15)      | 否    | 无    |
 | signature    | 个性签名      | 用户的个性留言       | string(50)      | 否    | 无    |
 | gender       | 性别        | 1:女 2:男 3:未设置 | smallinteger(1) |    否  |    3  |
@@ -259,7 +275,7 @@ HTTP/1.1
 
 | 参数名          | 含义        | 规则说明          | 参数类型            | 是否必须 | 缺省值  |
 | ------------ | --------- | ------------- | --------------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token     | integer(11) 是   | 无    |      |
+| access-token | 用户授权token | 用户授权token     | string | 是   | 无    |      |
 请求实例： GET <u>userinfo/deleteuser ?access-token=iIvChOihED8fVBPWq41OvAGAvzPgSDoc HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
 返回结果：
  成功：
@@ -273,7 +289,7 @@ HTTP/1.1
 
  |参数名 |含义| 规则说明| 参数类型|  是否必须|  缺省值|
 
-| access-token | 用户授权Token | 用户授权Token | integer(11) | 是    | 无    |
+| access-token | 用户授权token | 用户授权token | string | 是    | 无    |
 | ------------ | --------- | --------- | ----------- | ---- | ---- |
 | latitude     | 纬度        | 用户坐标所在的纬度 | double      | 是    | 无    |
 | longitude    | 经度        | 用户坐标所在的经度 | double      | 是    | 无    |
@@ -292,7 +308,7 @@ HTTP/1.1
 
 | 参数名          | 含义        | 规则说明      | 参数类型        | 是否必须 | 缺省值  |
 | ------------ | --------- | --------- | ----------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token | integer(11) | 是    | 无    |
+| access-token | 用户授权token | 用户授权token | string | 是    | 无    |
 | count        | 页面显示的条数   | 每页显示内容的条数 | integer     | 是    | 无    |
 | page         | 当前页       | 当前页的页数    | integer     | 否    | 1    |
 
@@ -351,7 +367,7 @@ HTTP/1.1
 
 | 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
 | ------------ | ---- | ----------- | ----------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token | integer(11) | 是    | 无    |
+| access-token | 用户授权token | 用户授权token | string | 是    | 无    |
 
 请求实例：
  <u>GET /requestinfo/requestlist?access-token=1f62377af75920ce2a6377dd6e83929bf825feb0 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
@@ -410,7 +426,7 @@ HTTP/1.1
 
 | 参数名          | 含义        | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
 | ------------ | --------- | ----------- | ----------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token   | integer(11) | 是    | 无    |
+| access-token | 用户授权token | 用户授权token   | string | 是    | 无    |
 
 请求实例： GET <u>/friendinfo/showfriend ?access-token=iIvChOihED8fVBPWq41OvAGAvzPgSDoc HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
 返回结果：
@@ -498,7 +514,7 @@ HTTP/1.1
 
 | 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
 | ------------ | ---- | ----------- | ----------- | ---- | ---- |
-| access-token | 用户授权Token | 用户授权Token | integer(11) | 是    | 无    |
+| access-token | 用户授权token | 用户授权token | string | 是    | 无    |
 | pagesize     | 页面显示的条数   | 每页显示内容的条数 | integer     | 否    | 3    |
 | cpage         | 当前页       | 当前页的页数    |     integer       | 否    | 1    |
 
@@ -553,7 +569,7 @@ POST <u>/keyword/booksearch?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a
 
 | 参数名          | 含义        | 规则说明      | 参数类型       | 是否必须 |
 | ------------ | --------- | --------- | ---------- | :--- |
-| access-token | 用户授权Token | 用户授权Token | integer(11 | 是    |
+| access-token | 用户授权token | 用户授权token | string | 是    |
 
 请求实例：
 GET <u>/keyword/gethotword?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
