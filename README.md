@@ -646,7 +646,27 @@ GET <u>/collect/getbookdetail?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf
 | publisher | 出版社    |    string     |  100  | 
 | pub_date  | 出版日期  |    string     |   -   |  
 
-######十二、版本升级
+   
+######十二、评论
+######1.图书评论
+接口说明：用户对图书的评论
+请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|  book_id   |  图书ID |  图书表中的ID |  integer  | 是    | 无    |
+|  score_num |  评分  |  用户给图书打的评分，为1-10范围内的整数 | integer | 是    | 无    |
+
+
+请求实例：
+POST <u>/collect/scorebook?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+
+返回结果：
+成功：
+   {"code":200,"message":"图书评分成功","data":""}
+
+
+######十三、版本升级
 ######1.客户端版本升级
 接口说明：客户端版本自动检测升级
 请求参数：
@@ -663,4 +683,4 @@ POST <u>/version/updateversion?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691
 返回结果：
 成功：
    {"code":200,"message":"请更新客户端版本","data":{"is_update":true,"is_required":false,"latest_version":"1.5.0","update_note":"修复几处漏洞","down_link":"http://www.123.com"}}
-   
+
