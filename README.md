@@ -259,6 +259,14 @@ HTTP/1.1
  成功
      {"code":200,"message":"图片上传成功，保存成功","data":{"user_id":1,"avatar_native":"/images/18508236987/f5257a2f73224a63bddae683e739a27c.jpg","avatar_thumb":"/images/18508236987/thumb_f5257a2f73224a63bddae683e739a27c.jpg"}} 
 
+返回参数：
+
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| user_id  | 用户表ID   | integer   |  -   |  
+| avatar_native  | 用户原始上传头像url  | string  | - | 
+| avatar_thumb   | 用户头像缩略图url    | string  | - | 
+
 ######3.个人信息设置
  接口说明：设置用户名，个性签名，性别。同时更新即时通讯用户表中的昵称  请求参数：
 
@@ -297,9 +305,8 @@ HTTP/1.1
 | latitude     | 纬度        | 用户坐标所在的纬度 | double      | 是    | 无    |
 | longitude    | 经度        | 用户坐标所在的经度 | double      | 是    | 无    |
 请求实例：
- POST
 
- <u>/location/setposition ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
+  POST <u>/location/setposition ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
 返回结果：
  成功 
 
@@ -317,12 +324,14 @@ HTTP/1.1
 
 请求实例：
 
-- [ ] GET /location/getposition ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7&page=1&count=1 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)
+  GET /location/getposition ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7&page=1&count=1 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)
 
 
 返回结果：
 
- `{ "code": 200, "message": "获取附近用户坐标成功", "data": { "num": 2, "0": { "user_id": "2", "user_name": "小白", "gender": "2", "distance": 0, "avatar_url": { "large": "/images/18228170109/ae8c5711.jpg", "mid": "/images/18228170109/thumb_ae8c5711.jpg" } }, "1": { "user_id": "3", "user_name": null, "gender": "2", "distance": 2.4, "avatar_url": { "large": "/images/18228170109/ae8c57.jpg", "mid": "/images/18228170109/thumb_ae8c57.jpg" } } } }` 
+{"code":200,"message":"获取附近用户坐标成功","data":{"num":2,"info":[{"user_id":"5","user_name":"小紫","gender":"1","distance":1.1,"avatar_url":""},{"user_id":"6","user_name":"小青","gender":"1","distance":0,"avatar_url":""}]}}
+
+ 
 成功： 
 
 | 字段 含义      | 数据类型       | 长度              |
