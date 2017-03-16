@@ -308,7 +308,7 @@ HTTP/1.1
 
   POST <u>/location/setposition ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)</u> 
 返回结果：
- 成功 
+成功 
 
     { "code": 200, "message": "设置用户坐标成功",}
 ###### 2.查询LBS定位 
@@ -323,25 +323,27 @@ HTTP/1.1
 | page         | 当前页       | 当前页的页数    | integer     | 否    | 1    |
 
 请求实例：
-
   GET /location/getposition ?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7&page=1&count=1 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)
 
-
 返回结果：
-
-{"code":200,"message":"获取附近用户坐标成功","data":{"num":2,"info":[{"user_id":"5","user_name":"小紫","gender":"1","distance":1.1,"avatar_url":""},{"user_id":"6","user_name":"小青","gender":"1","distance":0,"avatar_url":""}]}}
-
+成功 
+{"code":200,"message":"获取附近用户坐标成功","data":{"num":2,"info":[{"user_id":5,"user_name":"小紫","gender":1,"signature":"啦啦啦2","avatar_url":{"large":"","mid":""},"is_friend":2,"collection":[{"book_id":"8","book_name":"代码大全","is_both_enjoy":2},{"book_id":"1","book_name":"唐诗三百首精选","is_both_enjoy":1},{"book_id":"9","book_name":"Introduction to Algorithms","is_both_enjoy":1}],"distance":1.1},{"user_id":6,"user_name":"小青","gender":1,"signature":"啦啦啦","avatar_url":{"large":"","mid":""},"is_friend":1,"collection":"","distance":4.5}]}}
  
-成功： 
+返回参数： 
 
-| 字段 含义      | 数据类型       | 长度              |
-| ---------- | ---------- | --------------- |
-| user_id    | 用户ID       | integer         |
-| user_name  | 用户姓名       | string 15       |
-| signature  | 个性签名       | string 50       |
-| avatar_url | 用户头像url    | string          |
-| distance   | 用户与对方的详细距离 | integer         |
-| gender     | 用户性别       | smallinteger(1) |
+| 参数名          | 含义     | 参数类型        | 长度 |
+| ------------- | ------- | ------------ | ------- | 
+| book_id  | 图书ID     |    integer    |   -   | 
+| book_name| 图书名称   |    string     |   30  | 
+| is_both_enjoy | 是否为共同爱好 ：1是 2 否  |  integer  | 1  | 
+| user_id  | 用户表ID   | integer   |  -   | 
+| user_name| 用户姓名   |    string     |   15  | 
+| gender   | 用户性别  1 女 2 男  |  integer  | 1  | 
+| signature| 个性签名   |    string     |   50  | 
+| avatar_url  | 用户头像url  | string  | - | 
+| is_friend   | 是否已经成为好友 ：1是 2 否  | integer  | 1 | 
+| distance    | 用户与所查找用户的距离   |    float     | - |
+
 ######六、用户反馈 
 ######1.投诉建议 
 接口说明：添加或者修改用户的投诉建议
@@ -470,20 +472,20 @@ HTTP/1.1
 
 返回结果：
 成功：
-{"code":200,"message":"查询成功","data":{"is_friend":2,"collection":[{"book_id":"6","book_name":"深入浅出MySQL","is_both_enjoy":2},{"book_id":"3","book_name":"唐诗三百首精选2","is_both_enjoy":2},{"book_id":"7","book_name":"The Hobbit","is_both_enjoy":1},{"book_id":"8","book_name":"代码大全","is_both_enjoy":1}],"personalinfo":{"user_id":1,"user_name":"小花","gender":1,"signature":"啦啦啦","avatar_native":"/images/18508236987/3fc5d1ac659846368d522a6ea5ffa427.jpg","avatar_thumb":"/images/18508236987/thumb_3fc5d1ac659846368d522a6ea5ffa427.jpg"}}}
+{"code":200,"message":"查询成功","data":{"user_id":3,"user_name":"小芳","gender":1,"signature":"啦啦啦","avatar_url":{"large":"","mid":""},"is_friend":1,"collection":[{"book_id":"5","book_name":"唐诗三百首精选4","is_both_enjoy":2},{"book_id":"3","book_name":"唐诗三百首精选2","is_both_enjoy":1}]}}
 
 返回参数：
 
 | 参数名          | 含义     | 参数类型        | 长度 |
 | ------------- | ------- | ------------ | ------- | 
+| book_id  | 图书ID     |    integer    |   -   | 
 | book_name| 图书名称   |    string     |   30  | 
 | is_both_enjoy | 是否为共同爱好 ：1是 2 否  |  integer  | 1  | 
 | user_id  | 用户表ID   | integer   |  -   | 
 | user_name| 用户姓名   |    string     |   15  | 
 | gender   | 用户性别  1 女 2 男  |  integer  | 1  | 
 | signature| 个性签名   |    string     |   50  | 
-| avatar_native  | 用户原始上传头像url  | string  | - | 
-| avatar_thumb   | 用户头像缩略图url    | string  | - | 
+| avatar_url  | 用户头像url  | string   | - | 
 | is_friend      | 是否已经成为好友 ：1是 2 否   | integer  | 1 | 
 
 ######8.设置好友备注
