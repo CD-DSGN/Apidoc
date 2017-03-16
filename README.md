@@ -257,8 +257,8 @@ HTTP/1.1
  POST userinfo/uploadavatar ?access-token=1f62377af75920ce2a6377dd6e83929bf825feb0 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web](http://192.168.1.115/reading-partner-php/api/web)
  返回结果：
  成功
+     {"code":200,"message":"图片上传成功，保存成功","data":{"user_id":1,"avatar_native":"/images/18508236987/f5257a2f73224a63bddae683e739a27c.jpg","avatar_thumb":"/images/18508236987/thumb_f5257a2f73224a63bddae683e739a27c.jpg"}} 
 
-     { "code": 200, "message": "图片上传成功，保存成功"} 
 ######3.个人信息设置
  接口说明：设置用户名，个性签名，性别。同时更新即时通讯用户表中的昵称  请求参数：
 
@@ -538,6 +538,21 @@ HTTP/1.1
 | photo    | 图书照片   |    string     |  100  | 
 | synopsis | 图书简介   |    text       |   -   | 
 
+######3.删除图书关注
+接口说明：用户对已收藏的图书进行删除
+请求参数：
+
+| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
+| ------------ | ---- | ----------- | ----------- | ---- | ---- |
+|book_id  |  图书ID  |  图书表中的ID |  integer  | 是    | 无    |
+
+请求实例：
+GET <u>/collect/deletecollection?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
+返回结果：
+成功：
+
+     { "code": 200， "message":"删除图书收藏成功" }
+
 
 ######九、图书搜索
 1.图书搜索
@@ -586,40 +601,7 @@ GET <u>/keyword/gethotword?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7
 | ------------- | ------- | ------------ | ------- | 
 | hotword | 热门搜索词  |  string    |   -   | 
 
-
-######十、图书收藏
-######1.添加图书收藏
-接口说明：用户点击图书，进行收藏
-请求参数：
-
-| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
-| ------------ | ---- | ----------- | ----------- | ---- | ---- |
-|book_id  |  图书ID  |  图书表中的ID |  integer  | 是    | 无    |
-
-请求实例：
-GET <u>/collect/addcollection?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
-返回结果：
-成功：
-
-     { "code": 200， "message":"添加到图书收藏成功" }    
-
-######2.删除图书收藏
-接口说明：用户对已收藏的图书进行删除
-请求参数：
-
-| 参数名          | 含义   | 规则说明        | 参数类型        | 是否必须 | 缺省值  |
-| ------------ | ---- | ----------- | ----------- | ---- | ---- |
-|book_id  |  图书ID  |  图书表中的ID |  integer  | 是    | 无    |
-
-请求实例：
-GET <u>/collect/deletecollection?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7 HTTP/1.1Host: [http://192.168.1.115/reading-partner-php/api/web</u>](http://192.168.1.115/reading-partner-php/api/web)
-返回结果：
-成功：
-
-     { "code": 200， "message":"删除图书收藏成功" }
-
-
-######十一、获取图书详情
+######十、获取图书详情
 ######1.获取图书详情
 接口说明：根据图书表中的book_id，获取图书详情
 请求参数：
@@ -647,7 +629,7 @@ GET <u>/collect/getbookdetail?book_id=2&access-token=c73925bfa0f08a641be5db9f5cf
 | pub_date  | 出版日期  |    string     |   -   |  
 
    
-######十二、评论
+######十一、评论
 ######1.图书评论
 接口说明：用户对图书的评论
 请求参数：
@@ -666,7 +648,7 @@ POST <u>/collect/scorebook?access-token=c73925bfa0f08a641be5db9f5cf0d22ea691e0a7
    {"code":200,"message":"图书评分成功","data":""}
 
 
-######十三、版本升级
+######十二、版本升级
 ######1.客户端版本升级
 接口说明：客户端版本自动检测升级
 请求参数：
